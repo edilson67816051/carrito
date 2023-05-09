@@ -22,7 +22,8 @@ return new class extends Migration
             $table->double('shipping_cost');
             $table->text('description');
             $table->integer('category_id');
-            $table->unsignedInteger('brand_id')->unsigned();
+            $table->integer('stock');
+            $table->integer('oferta');
             $table->string('image_path');
             $table->timestamps();
 

@@ -4,8 +4,8 @@
  <!-- DataTales Example -->
  <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h5 class="m-0 font-weight-bold text-primary">Lista de los Usuarios     <a href={{url("producto\create")}}>
-            <button type="button" class="btn btn-success">Nuevo producto</button></a> 
+        <h5 class="m-0 font-weight-bold text-primary">Lista de los Pedidos realizado     
+          
             
         </h5>
         
@@ -16,31 +16,31 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>       
-                        <th>Apellido</th>    
-                        <th>Celular</th>         
+                        <th>ID Usuario</th>
+                        <th>Total</th>       
+                        <th>Estado</th>    
+                        <th>Metodo Pago</th>         
                         <th>Opciones</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
                         <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Correo</th>      
-                        <th>Apellido</th>    
-                        <th>Celular</th>            
+                        <th>ID Usuario</th>
+                        <th>Total</th>       
+                        <th>Estado</th>    
+                        <th>Metodo Pago</th>         
                         <th>Opciones</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($clientes as $user)                
+                    @foreach ($pedidos as $pedido)                
                     <tr>
-                        <td>{{$user->id}}</td>
-                        <td>{{$user->name}}</td>
-                        <td>{{$user->email}}</td>
-                        <td>{{$user->apellido_p}} {{$user->apellido_m}}</td>
-                        <td>{{$user->celular}}</td>
+                        <td>{{$pedido->id}}</td>
+                        <td>{{$pedido->users_id}}</td>
+                        <td>{{$pedido->total_tax}}</td>
+                        <td>{{$pedido->seguimiento}}</td>
+                        <td>{{$pedido->metodopago}}</td>
                         <td>        
                             <form action="" method="POST">
                                 <a href=""><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button></a>    

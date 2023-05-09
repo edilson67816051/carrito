@@ -6,9 +6,16 @@
            HOME PRODUCTOS DESTACADOS
         ================================== -->
         <div class="hm-page-block bg-fondo">
-
+                        
             <div class="container">
-
+                @if(session()->has('success_msg'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session()->get('success_msg') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        @endif
                 <div class="header-title" data-aos="fade-up">
                     <h1>Productos populares</h1>
                 </div>
@@ -20,11 +27,11 @@
                     </li>
 
                     <li class="hm-tab-link ">
-                        Gin
+                        Jeans
                     </li>
 
                     <li class="hm-tab-link ">
-                        Calsado
+                        Calzado
                     </li>
 
                     <li class="hm-tab-link ative">
@@ -46,12 +53,17 @@
                                 <a href="">
                                     <img src="/images/productos/{{ $pro->image_path }}" alt="">
                                 </a>
-                                <span class="stin stin-new">Nuevo</span>
+                                    @if ($pro->stock == 0)
+                                      <span class="stin stin-oferta">Agotado</span>
+                                    @else
+                                    <span class="stin stin-new">Nuevo</span>
+                                    @endif
                             </div>
 
                             <div class="p-info">
                                <a href=""> <h3>{{ $pro->name }}</h3></a>
                                 <div class="precio">
+                                    
                                     <span>S/ {{ $pro->price }}</span>
                                 </div>
                                 
@@ -139,7 +151,12 @@
                                         <a href="">
                                             <img src="/images/productos/{{ $pro->image_path }}" alt="">
                                         </a>
-                                        <span class="stin stin-new">Nuevo</span>
+                                        @if ($pro->stock == 0)
+                                      <span class="stin stin-oferta">Agotado</span>
+                                    @else
+                                    <span class="stin stin-new">Nuevo</span>
+                                    @endif
+                                        
                                     </div>
         
                                     <div class="p-info">
@@ -153,6 +170,7 @@
                                             <input type="hidden" value="{{ $pro->id }}" id="id" name="id">
                                             <input type="hidden" value="{{ $pro->name }}" id="name" name="name">
                                             <input type="hidden" value="{{ $pro->price }}" id="price" name="price">
+                                          
                                             <input type="hidden" value="{{ $pro->image_path }}" id="img" name="img">
                                             <input type="hidden" value="{{ $pro->slug }}" id="slug" name="slug">
                                             <input type="hidden" value="1" id="quantity" name="quantity">
@@ -178,26 +196,32 @@
                 <div class="tabs-content" data-aos="fade-up">
 
                     <div class="grid-product">
-                        @foreach($products as $pro)          
+                        @foreach($products as $pro)     
+                        @if ($pro->oferta == 1)     
                                 <div class="product-item">
                                     <div class="p-portada">
                                         <a href="">
                                             <img src="/images/productos/{{ $pro->image_path }}" alt="">
                                         </a>
+                                        
+                                        @if ($pro->stock == 0)
+                                        <span class="stin stin-oferta">Agotado</span>
+                                        @else
                                         <span class="stin stin-oferta">Oferta</span>
+                                        @endif
                                     </div>
         
                                     <div class="p-info">
                                        <a href=""> <h3>{{ $pro->name }}</h3></a>
                                         <div class="precio">
-                                            <span>Bs/ {{ $pro->price }}</span>
+                                            <span>Bs/ {{ $pro->price*0.75 }}</span>
                                         </div>
                                         
                                         <form action="{{ route('cart.store') }}" method="POST">
                                             {{ csrf_field() }}
                                             <input type="hidden" value="{{ $pro->id }}" id="id" name="id">
                                             <input type="hidden" value="{{ $pro->name }}" id="name" name="name">
-                                            <input type="hidden" value="{{ $pro->price }}" id="price" name="price">
+                                            <input type="hidden" value="{{ $pro->price*0.75 }}" id="price" name="price">
                                             <input type="hidden" value="{{ $pro->image_path }}" id="img" name="img">
                                             <input type="hidden" value="{{ $pro->slug }}" id="slug" name="slug">
                                             <input type="hidden" value="1" id="quantity" name="quantity">
@@ -211,6 +235,7 @@
                                     </div>
         
                                 </div>
+                             @endif   
 
                          @endforeach
 

@@ -12,6 +12,6 @@ class Detalle_pedido extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'producto_id','cantidad','precio','monto','estado',
+        'pedido_id','producto_id','cantidad','precio','subtotal','estado',
     ];
 }

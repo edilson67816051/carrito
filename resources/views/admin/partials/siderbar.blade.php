@@ -17,11 +17,15 @@
         <a class="nav-link" href="/home">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
+           
     </li>
-
+    <li class="nav-item active">
+        <a class="nav-link" href="/">
+            <span>Tienda ..</span></a>
+    </li>
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+   
     <!-- Heading -->
     <div class="sidebar-heading">
         Configuracion
@@ -36,13 +40,9 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="buttons.html">
+                <a class="collapse-item" href={{url('users')}}>
                     <i class="fas fa-users fa-fw"></i> Usuario
                 </a>
-                <a class="collapse-item" href="cards.html">
-                    <i class="fas fa-id-card fa-fw"></i> Roles</a>
-                <a class="collapse-item" href="cards.html">
-                    <i class="fas fa-hand-paper fa-fw"></i> Permiso</a>
             </div>
         </div>
     </li>
@@ -57,9 +57,9 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="utilities-color.html">Ventas</a>
-                <a class="collapse-item" href="{{route('producto.index')}}">Productos</a>
-                <a class="collapse-item" href="">Clientes</a>
+                <a class="collapse-item" href={{url('pedidos')}}>Pedidos</a>
+                <a class="collapse-item" href={{url('producto')}}>Productos</a>
+                <a class="collapse-item" href={{url('clientes')}}>Clientes</a>
             </div>
         </div>
     </li>

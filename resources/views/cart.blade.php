@@ -5,7 +5,7 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Tienda</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                <li class="breadcrumb-item active" aria-current="page">Carrito de Compra</li>
             </ol>
         </nav>
         @if(session()->has('success_msg'))
@@ -47,7 +47,7 @@
                 @foreach($cartCollection as $item)
                     <div class="row">
                         <div class="col-lg-3">
-                            <img src="/images/{{ $item->attributes->image }}" class="img-thumbnail" width="200" height="200">
+                            <img src="/images/productos/{{ $item->attributes->image }}" class="img-thumbnail" width="200" height="200">
                         </div>
                         <div class="col-lg-5">
                             <p>
@@ -93,16 +93,17 @@
                         </ul>
                     </div>
                     <br>
-               
                         
-                        <a href="/" class="btn btn-dark">Continue en la tienda</a>
 
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#IniciaModal">
-                            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Pagar
-                        </a>
-
-
+                        <form action="{{ route('session') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <input type="hidden" name="costo" value={{ \Cart::getContent() }}>
+                            <a href="/" class="btn btn-dark">Continue en la tienda</a>
+                            <button class="btn btn-success" type="submit" id="checkout-live-button">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Realizar pedido</button>
+                        </form>
 
         
                 </div>

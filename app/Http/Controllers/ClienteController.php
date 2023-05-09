@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClienteController extends Controller
 {
     public function index()
     {
-        $clients = Cliente::all();
-        return view('cliente.index', ['clientes' => $clients]);
+        
+        $clients = DB::select('SELECT * from users where cliente = 1');
+        return view('admin.cliente.index', ['clientes' => $clients]);
     }
 
     public function home()

@@ -17,9 +17,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Correo</th>       
-                        <th>Apellido</th>    
-                        <th>Celular</th>         
+                        <th>Correo</th>                 
                         <th>Opciones</th>
                     </tr>
                 </thead>
@@ -27,20 +25,16 @@
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th>Correo</th>      
-                        <th>Apellido</th>    
-                        <th>Celular</th>            
+                        <th>Correo</th>                 
                         <th>Opciones</th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($clientes as $user)                
+                    @foreach ($users as $user)                
                     <tr>
                         <td>{{$user->id}}</td>
                         <td>{{$user->name}}</td>
                         <td>{{$user->email}}</td>
-                        <td>{{$user->apellido_p}} {{$user->apellido_m}}</td>
-                        <td>{{$user->celular}}</td>
                         <td>        
                             <form action="" method="POST">
                                 <a href=""><button type="button" class="btn btn-primary"><i class="fa fa-edit"></i></button></a>    

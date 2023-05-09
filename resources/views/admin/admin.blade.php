@@ -47,10 +47,11 @@
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
           
-
+         
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
+            
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -139,6 +140,7 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('assets/admin/js/demo/chart-area-demo.j')}}s"></script>
     <script src="{{asset('assets/admin/js/demo/chart-pie-demo.js')}}"></script>
+    @yield('script')
 
 </body>
 

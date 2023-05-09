@@ -3,16 +3,16 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col-lg-3">
-                    <img src="/images/{{ $item->attributes->image }}"
+                    <img src="/images/productos/{{ $item->attributes->image }}"
                          style="width: 50px; height: 50px;"
                     >
                 </div>
                 <div class="col-lg-6">
                     <b>{{$item->name}}</b>
-                    <br><small>Qty: {{$item->quantity}}</small>
+                    <br><small>Cantidad: {{$item->quantity}}</small>
                 </div>
                 <div class="col-lg-3">
-                    <p>${{ \Cart::get($item->id)->getPriceSum() }}</p>
+                    <p>Bs{{ \Cart::get($item->id)->getPriceSum() }}</p>
                 </div>
                 <hr>
             </div>
@@ -22,7 +22,7 @@
     <li class="list-group-item">
         <div class="row">
             <div class="col-lg-10">
-                <b>Total: </b>${{ \Cart::getTotal() }}
+                <b>Total: </b>Bs{{ \Cart::getTotal() }}
             </div>
             <div class="col-lg-2">
                 <form action="{{ route('cart.clear') }}" method="POST">

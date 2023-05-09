@@ -24,12 +24,13 @@ class ProductoController extends Controller
         $producto->name = request('name');
         $producto->slug= request('slug');;
         $producto->details = request('detalle');
+        $producto->shipping_cost = 10;
         $producto->price = request('precio');
-        $producto->shipping_cost = request('stock');
+        $producto->stock = request('stock');
         
         $producto->description = request('descripcion');
         $producto->category_id = 1;
-        $producto->brand_id = 34;
+        $producto->oferta = 0;
 
         if ($request->hasFile('imagen')){
             $imagen=$request->file('imagen');
@@ -50,7 +51,7 @@ class ProductoController extends Controller
 
         $producto = Product::findOrFail($id);
         $producto->name = request('name');
-        $producto->slug= request('slug');;
+        $producto->stock= request('stock');
         $producto->details = request('detalle');
         $producto->price = request('precio');
         $producto->shipping_cost = request('costo_envio');
@@ -61,4 +62,7 @@ class ProductoController extends Controller
         
         return redirect('/producto');
     }
+
+
+   
 }

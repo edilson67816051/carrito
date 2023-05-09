@@ -2,7 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\PedidosController;
 use App\Http\Controllers\ProductoController;
 
 /*
@@ -22,7 +25,9 @@ Route::get('/p', 'App\Http\Controllers\StripeController@checkout')->name('checko
 Route::post('/session', 'App\Http\Controllers\StripeController@session')->name('session');
 Route::get('/success', 'App\Http\Controllers\StripeController@success')->name('success');
 
-Route::get('/pago/{m}','StripeController@pago');
+Route::get('/checkout',[ProductoController::class, 'checkout'])->name('checkout');
+
+Route::post('/stripe/charge', 'StripeController@procesarPago');
 
 
 Route::get('/', [CartController::class, 'shop'])->name('shop');
@@ -42,9 +47,11 @@ Auth::routes();
 
 Route::resource('clientes', ClienteController::class);
 Route::resource('producto', ProductoController::class);
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::post('/stripe/charge', 'StripeController@procesarPago');
-
 Route::get('/cliente', [ClienteController::class, 'home'])->name('cliente.home');
+
+Route::resource('pedidos', PedidoController::class);
+
+Route::resource('users', UserController::class);
+Route::resource('clientes', ClienteController::class);
+Route::resource('pedidos', PedidosController::class);

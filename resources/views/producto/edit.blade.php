@@ -8,7 +8,7 @@
                 <!-- Nested Row within Card Body -->
                 <div class="row">
                     <div class="col-lg-5 d-none d-lg-block">
-                        <img src="/images/{{ $producto->image_path }}"
+                        <img src="/images/productos/{{ $producto->image_path }}"
                             class="card-img-top mx-auto"
                             style="height: 550px; width: 400px;display: block;"
                             alt="{{ $producto->image_path }}"
@@ -29,9 +29,9 @@
                                         value="{{$producto->name}}">
                                     </div>
                                     <div class="col-sm-6">
-                                        <label for="codigo">Slug :</label>
-                                        <input type="text" name="slug" class="form-control form-control-user" id="exampleLastName"
-                                        value="{{$producto->slug}}">
+                                        <label for="codigo">Stock :</label>
+                                        <input type="text" name="stock" class="form-control form-control-user" id="exampleLastName"
+                                        value="{{$producto->stock}}">
                                     </div>
                                 </div>
                                 

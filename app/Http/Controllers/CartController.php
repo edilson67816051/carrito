@@ -31,21 +31,28 @@ class CartController extends Controller
     }
 
     public function add(Request$request){
-        \Cart::add(array(
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'attributes' => array(
-                'image' => $request->img,
-                'slug' => $request->slug
-            )
-        ));
-        return redirect()->route('cart.index')->with('success_msg', 'Item Agregado a sú Carrito!');
+        $stock = Product::findOrFail($request->id)->stock;
+        if($stock>=$request->quantity){
+            \Cart::add(array(
+                'id' => $request->id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'attributes' => array(
+                    'image' => $request->img,
+                    'slug' => $request->slug
+                )
+            ));
+            return redirect()->route('cart.index')->with('success_msg', 'Item Agregado a sú Carrito!');
+        }else{
+            return redirect()->route('cart.index')->with('success_msg', 'Producto Agotado: '.$stock ); 
+        }
     }
 
     public function update(Request $request){
-        \Cart::update($request->id,
+        $stock = Product::findOrFail($request->id)->stock;
+        if($stock>=$request->quantity){
+            \Cart::update($request->id,
             array(
                 'quantity' => array(
                     'relative' => false,
@@ -53,6 +60,11 @@ class CartController extends Controller
                 ),
         ));
         return redirect()->route('cart.index')->with('success_msg', 'Carrito actualizado!');
+        }else{
+            return redirect()->route('cart.index')->with('success_msg', 'No hay suficiente Stock! Stock Maximo es :'.$stock ); 
+        }
+        
+        
     }
 
     public function clear(){
@@ -60,22 +72,6 @@ class CartController extends Controller
         return redirect()->route('cart.index')->with('success_msg', 'Carrito eliminado!');
     }
 
-    public function end(){
-        foreach (\Cart::getContent() as $producto){
-
-            $item = new detalle_pedido();
-            $item->fill([
-                "producto_id" =>$producto->id,
-                "cantidad" =>$producto->quantity,
-                "precio" => $producto->price,
-                "monto" =>$producto->quantity*$producto->price,
-                "estado" =>0,
-            ]);
-
-            $item->save();     
-        }
-        \Cart::clear();
-        return redirect('/');
-    }
+   
 }
 
